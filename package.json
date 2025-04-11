@@ -1,6 +1,5 @@
 {
   "name": "wetopia-back",
-  "packageManager": "yarn@4.9.0",
   "devDependencies": {
     "@nestjs/cli": "^11.0.6",
     "@types/express": "^5",
@@ -16,8 +15,7 @@
     "start:prod": "node dist/main.js",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
-    "postinstall": "nest build"
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix"
   },
   "dependencies": {
     "@nestjs/axios": "^4.0.0",
@@ -37,5 +35,6 @@
     "rxjs": "^7.8.2",
     "swagger-ui-express": "^5.0.1",
     "typeorm": "^0.3.22"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
