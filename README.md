@@ -142,7 +142,7 @@ AWS App Runner에 배포 시 해당 변수를 환경 변수 설정에 입력해�
   ```bash
   node dist/main.js
   ```
-- **포트**: 3000
+- **포트**: 3000 -> 4000 변경
 - **환경 변수 등록 필수**
 
 ## Commit Convention
@@ -153,4 +153,4 @@ AWS App Runner에 배포 시 해당 변수를 환경 변수 설정에 입력해�
 ## Contact
 
 - Maintainer: [@0biglife](https://github.com/0biglife)
-- PR & Issue는 언제든지 환영합니다!
+- 피드백을 포함한 PR & Issue, 모두 언제든지 환영합니다☺️
