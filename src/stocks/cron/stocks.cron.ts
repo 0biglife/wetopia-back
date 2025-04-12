@@ -1,3 +1,4 @@
+import { setTimeout as sleep } from 'timers/promises';
 import { Injectable } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { StocksService } from '../stocks.service';
@@ -17,6 +18,7 @@ export class StockCron {
 
   // 장마감해야 받아오기 가능 -> 07시 기준 1회 업데이트 스케줄링
   @Cron('0 7 * * 1-5', { timeZone: 'Asia/Seoul' })
+  // @Cron('0 55 * * * *') // 테스트용 -> 삭제 예정
   async syncHourlyPrice() {
     for (const symbol of STOCK_SYMBOLS) {
       try {
@@ -25,6 +27,7 @@ export class StockCron {
           `${this.context}/syncHourlyPrice`,
           `Updated ${symbol} on ${new Date().toISOString()}`,
         );
+        await sleep(8000);
       } catch (err) {
         this.logger.logError(`${this.context}/syncHourlyPrice`, err.message);
       }

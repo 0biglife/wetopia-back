@@ -1,17 +1,15 @@
-// src/seeder/seeder.service.ts
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Stock } from '../stocks/entities/stock.entity';
-import { Repository } from 'typeorm';
 import { TwelveDataService } from '../external/twelve-data.service';
 import { CustomLogger } from 'src/common/logger/custom-logger.service';
 import { setTimeout as sleep } from 'timers/promises';
+import { StocksRepository } from 'src/stocks/stocks.repository';
 
 @Injectable()
 export class SeederService {
   private readonly context = SeederService.name;
   constructor(
-    @InjectRepository(Stock) private stockRepo: Repository<Stock>,
+    private readonly stockRepo: StocksRepository,
     private readonly twelveData: TwelveDataService,
     private readonly logger: CustomLogger,
   ) {}
@@ -31,8 +29,7 @@ export class SeederService {
         return s;
       });
 
-      // await this.stockRepo.save(stocks);
-      await this.stockRepo.upsert(stocks, ['symbol', 'date']);
+      await this.stockRepo.upsertStock(stocks);
       this.logger.logSuccess(
         `${this.context}/seedAllSymbols`,
         `Seeded ${symbol}: ${stocks.length} entries`,

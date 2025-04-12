@@ -7,10 +7,12 @@ import { HttpModule } from '@nestjs/axios';
 import { TwelveDataService } from '../external/twelve-data.service';
 import { StockCron } from './cron/stocks.cron';
 import { LoggerModule } from 'src/common/logger/logger.module';
+import { StocksRepository } from './stocks.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Stock]), HttpModule, LoggerModule],
   controllers: [StocksController],
-  providers: [StocksService, TwelveDataService, StockCron],
+  providers: [StocksService, StocksRepository, TwelveDataService, StockCron],
+  exports: [StocksService, StocksRepository, StockCron],
 })
 export class StocksModule {}

@@ -1,14 +1,18 @@
-import { IsString, IsOptional } from 'class-validator';
+import { Expose } from 'class-transformer';
 
-export class StockHistoryDto {
-  @IsString()
-  symbol: string;
+export class StockResponseDto {
+  @Expose()
+  date: string;
 
-  @IsString()
-  @IsOptional()
-  interval?: string; // "1day"
+  @Expose()
+  open: number;
 
-  @IsString()
-  @IsOptional()
-  range?: string; // "1y"
+  @Expose()
+  close: number;
+
+  @Expose()
+  high: number;
+
+  @Expose()
+  low: number;
 }

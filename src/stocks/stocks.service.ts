@@ -1,29 +1,35 @@
-import { HttpException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 import { Stock } from './entities/stock.entity';
-import { Repository } from 'typeorm';
 import { TwelveDataService } from '../external/twelve-data.service';
-import { StockHistoryDto } from './dto/stock.dto';
+import { StocksRepository } from './stocks.repository';
+import { plainToInstance } from 'class-transformer';
+import { StockResponseDto } from './dto/stock.dto';
+import { groupBy } from 'lodash';
 
 @Injectable()
 export class StocksService {
   constructor(
-    @InjectRepository(Stock) private stockRepo: Repository<Stock>,
+    private readonly stockRepo: StocksRepository,
     private twelveData: TwelveDataService,
   ) {}
 
-  async fetchHistory(dto: StockHistoryDto) {
-    const { symbol, interval = '1day', range = '1y' } = dto;
-    const data = await this.twelveData.fetch(symbol, interval, range);
+  async fetchDashboard(): Promise<
+    { symbol: string; history: StockResponseDto[] }[]
+  > {
+    const rows = await this.stockRepo.findGroupedBySymbol();
 
-    if (!data || data.length === 0) {
-      throw new HttpException('No data found', 404);
-    }
+    const grouped = groupBy(rows, 'symbol');
 
-    return {
-      status: 'success',
-      data,
-    };
+    return Object.entries(grouped).map(([symbol, data]) => ({
+      symbol,
+      history: plainToInstance(
+        StockResponseDto,
+        data as Record<string, any>[],
+        {
+          excludeExtraneousValues: true,
+        },
+      ),
+    }));
   }
 
   async fetchAndSave(symbol: string, interval = '1day', range = '1day') {
@@ -41,7 +47,7 @@ export class StocksService {
       return s;
     });
 
-    await this.stockRepo.upsert(entities, ['symbol', 'date']); // 중복 방지
+    await this.stockRepo.upsertStock(entities);
     return { count: entities.length };
   }
 }

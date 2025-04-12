@@ -2,7 +2,7 @@ export const STOCK_SYMBOLS: string[] = [
   'AAPL',
   'TSLA',
   'MSFT',
-  'GOOG',
+  // 'GOOG',
   'GOOGL',
   'AMZN',
   'META',

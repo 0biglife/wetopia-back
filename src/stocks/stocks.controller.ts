@@ -1,13 +1,12 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { StocksService } from './stocks.service';
-import { StockHistoryDto } from './dto/stock.dto';
 
-@Controller('stocks')
+@Controller('stock')
 export class StocksController {
   constructor(private readonly stockService: StocksService) {}
 
-  @Post('history')
-  async getHistory(@Body() body: StockHistoryDto) {
-    return await this.stockService.fetchHistory(body);
+  @Get('dashboard')
+  async fetchDashboard() {
+    return await this.stockService.fetchDashboard();
   }
 }
