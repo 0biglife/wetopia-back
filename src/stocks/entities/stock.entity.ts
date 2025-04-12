@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('stocks') // 테이블명
+@Index(['symbol', 'date'], { unique: true }) // 인덱스 설정
 export class Stock {
   @PrimaryGeneratedColumn()
   id: number;
@@ -8,8 +9,8 @@ export class Stock {
   @Column()
   symbol: string;
 
-  @Column()
-  date: string;
+  @Column({ type: 'date' })
+  date: Date;
 
   @Column('float')
   open: number;

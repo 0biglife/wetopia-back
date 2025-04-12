@@ -26,13 +26,13 @@ export class StocksService {
     };
   }
 
-  async fetchAndSave(symbol: string) {
-    const values = await this.twelveData.fetch(symbol);
+  async fetchAndSave(symbol: string, interval = '1day', range = '1day') {
+    const values = await this.twelveData.fetch(symbol, interval, range);
 
     const entities = values.map((item) => {
       const s = new Stock();
       s.symbol = symbol;
-      s.date = item.datetime;
+      s.date = new Date(item.datetime);
       s.open = parseFloat(item.open);
       s.close = parseFloat(item.close);
       s.high = parseFloat(item.high);
@@ -41,7 +41,7 @@ export class StocksService {
       return s;
     });
 
-    await this.stockRepo.save(entities);
+    await this.stockRepo.upsert(entities, ['symbol', 'date']); // 중복 방지
     return { count: entities.length };
   }
 }
