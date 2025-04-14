@@ -17,6 +17,6 @@ async function bootstrap() {
   // const seeder = app.get(SeederService);
   // await seeder.seedAllSymbols(STOCK_SYMBOLS);
 
-  await app.listen(process.env.PORT ?? 4000);
+  await app.listen(4000);
 }
 bootstrap();

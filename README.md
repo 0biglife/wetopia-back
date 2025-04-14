@@ -22,23 +22,25 @@
 
 ```bash
 wetopia-backend
-├── src
+├── src/
 │   ├── app.module.ts         # 루트 모듈
 │   ├── main.ts               # 앱 진입점
-│   ├── config                # 환경변수 설정 모듈
+│   ├── config/               # 환경변수 설정 모듈
 │   │   └── config.module.ts
-│   ├── stocks                # 주가 관련 도메인
-│   │   ├── dto               # 요청 및 응답 DTO
-│   │   ├── entities          # TypeORM 엔티티
+│   ├── stocks/               # 주가 관련 도메인
+│   │   ├── cron/             # 스케줄링
+│   │   ├── dto/              # 요청 및 응답 DTO
+│   │   ├── entities/         # TypeORM 엔티티
 │   │   ├── stocks.module.ts
 │   │   ├── stocks.service.ts
+│   │   ├── stocks.repository.ts
 │   │   ├── stocks.controller.ts
 │   ├── external              # 외부 API 연동 (TwelveData)
 │   │   └── twelve-data.service.ts
-│   ├── common                # 공용 유틸, 필터, 예외 등
-│   │   ├── filters
+│   ├── common/               # 공용 유틸, 필터, 예외 등
+│   │   ├── logger/
+│   │   ├── utils/
 │   │   ├── interceptors
-│   │   ├── utils
 ├── test                     # 테스트 코드
 ├── .env                     # 환경 변수 파일
 ├── tsconfig.json
