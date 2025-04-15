@@ -17,8 +17,8 @@ export class StockCron {
   // TODO : 구현
 
   // 장마감해야 받아오기 가능 -> 07시 기준 1회 업데이트 스케줄링
-  @Cron('0 7 * * 1-5', { timeZone: 'Asia/Seoul' })
-  // @Cron('0 55 * * * *') // 테스트용 -> 삭제 예정
+  // @Cron('0 7 * * 1-5', { timeZone: 'Asia/Seoul' })
+  @Cron('0 */3 * * 1-5', { timeZone: 'Asia/Seoul' })
   async syncHourlyPrice() {
     for (const symbol of STOCK_SYMBOLS) {
       try {
@@ -29,7 +29,10 @@ export class StockCron {
         );
         await sleep(8000);
       } catch (err) {
-        this.logger.logError(`${this.context}/syncHourlyPrice`, err.message);
+        this.logger.logError(
+          `${this.context}/syncHourlyPrice`,
+          err instanceof Error ? err.message : String(err),
+        );
       }
     }
   }

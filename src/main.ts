@@ -1,12 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 // import { SeederService } from './seeder/seeder.service';
 // import { STOCK_SYMBOLS } from './constants/symbols';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-
+  app.useGlobalInterceptors(new LoggingInterceptor());
   app.enableCors({
     origin: ['http://localhost:3000', 'https://0biglife.com'],
     credentials: true,

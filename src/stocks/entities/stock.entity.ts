@@ -4,26 +4,26 @@ import { Entity, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
 @Index(['symbol', 'date'], { unique: true }) // 인덱스 설정
 export class Stock {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  symbol: string;
+  symbol!: string;
 
   @Column({ type: 'date' })
-  date: Date;
+  date!: Date;
 
   @Column('float')
-  open: number;
+  open!: number;
 
   @Column('float')
-  close: number;
+  close!: number;
 
   @Column('float')
-  high: number;
+  high!: number;
 
   @Column('float')
-  low: number;
+  low!: number;
 
   @Column('bigint')
-  volume: number;
+  volume!: number;
 }

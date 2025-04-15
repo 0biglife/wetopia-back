@@ -2,17 +2,17 @@ import { Expose } from 'class-transformer';
 
 export class StockResponseDto {
   @Expose()
-  date: string;
+  date!: string;
 
   @Expose()
-  open: number;
+  open!: number;
 
   @Expose()
-  close: number;
+  close!: number;
 
   @Expose()
-  high: number;
+  high!: number;
 
   @Expose()
-  low: number;
+  low!: number;
 }
