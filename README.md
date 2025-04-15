@@ -20,6 +20,8 @@
 
 ## Directory Structure
 
+- App Runner 기반 빌드 배포이기에 git에 dist/를 푸시하는 중
+
 ```bash
 wetopia-backend
 ├── src/
