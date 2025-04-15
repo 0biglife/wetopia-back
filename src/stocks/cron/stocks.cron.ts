@@ -17,8 +17,8 @@ export class StockCron {
   // TODO : 구현
 
   // 장마감해야 받아오기 가능 -> 07시 기준 1회 업데이트 스케줄링
-  // @Cron('0 7 * * 1-5', { timeZone: 'Asia/Seoul' })
-  @Cron('0 */3 * * 1-5', { timeZone: 'Asia/Seoul' })
+  @Cron('0 7 * * 1-5', { timeZone: 'Asia/Seoul' })
+  // @Cron('0 */3 * * 1-5', { timeZone: 'Asia/Seoul' })
   async syncHourlyPrice() {
     for (const symbol of STOCK_SYMBOLS) {
       try {

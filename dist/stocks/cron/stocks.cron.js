@@ -38,7 +38,7 @@ let StockCron = StockCron_1 = class StockCron {
 };
 exports.StockCron = StockCron;
 __decorate([
-    (0, schedule_1.Cron)('0 */3 * * 1-5', { timeZone: 'Asia/Seoul' }),
+    (0, schedule_1.Cron)('0 7 * * 1-5', { timeZone: 'Asia/Seoul' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
