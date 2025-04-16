@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
+const compression = require("compression");
 const app_module_1 = require("./app.module");
 const logging_interceptor_1 = require("./common/interceptors/logging.interceptor");
 async function bootstrap() {
@@ -13,6 +14,7 @@ async function bootstrap() {
         methods: ['GET', 'POST'],
         allowedHeaders: ['Content-Type', 'Authorization'],
     });
+    app.use(compression());
     await app.listen(4000);
 }
 bootstrap();

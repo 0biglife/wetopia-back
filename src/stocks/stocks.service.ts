@@ -14,22 +14,29 @@ export class StocksService {
   ) {}
 
   async fetchDashboard(): Promise<
-    { symbol: string; history: StockResponseDto[] }[]
+    {
+      symbol: string;
+      history: {
+        date: string;
+        open: number;
+        close: number;
+        high: number;
+        low: number;
+      }[];
+    }[]
   > {
     const rows = await this.stockRepo.findGroupedBySymbol();
 
     const grouped = groupBy(rows, 'symbol');
 
-    return Object.entries(grouped).map(([symbol, data]) => ({
-      symbol,
-      history: plainToInstance(
-        StockResponseDto,
-        data as Record<string, any>[],
-        {
+    return Object.entries(grouped as Record<string, any[]>).map(
+      ([symbol, data]) => ({
+        symbol,
+        history: plainToInstance(StockResponseDto, data, {
           excludeExtraneousValues: true,
-        },
-      ),
-    }));
+        }),
+      }),
+    );
   }
 
   async fetchAndSave(symbol: string, interval = '1day', range = '1day') {

@@ -6,6 +6,12 @@ export declare class StocksController {
     constructor(stockService: StocksService, logger: CustomLogger);
     fetchDashboard(): Promise<{
         symbol: string;
-        history: import("./dto/stock.dto").StockResponseDto[];
+        history: {
+            date: string;
+            open: number;
+            close: number;
+            high: number;
+            low: number;
+        }[];
     }[]>;
 }

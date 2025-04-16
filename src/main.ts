@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import * as compression from 'compression';
 import { AppModule } from './app.module';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 // import { SeederService } from './seeder/seeder.service';
@@ -17,6 +18,7 @@ async function bootstrap() {
 
   // const seeder = app.get(SeederService);
   // await seeder.seedAllSymbols(STOCK_SYMBOLS);
+  app.use(compression()); // gzip 응답 압축 적용
 
   await app.listen(4000);
 }
