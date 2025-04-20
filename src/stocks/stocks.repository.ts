@@ -20,6 +20,7 @@ export class StocksRepository extends Repository<Stock> {
       close: number;
       high: number;
       low: number;
+      volume: number;
     }[]
   > {
     return await this.dataSource
@@ -32,6 +33,7 @@ export class StocksRepository extends Repository<Stock> {
         'stock.close as close',
         'stock.high as high',
         'stock.low as low',
+        'stock.volume as volume',
       ])
       .orderBy('stock.symbol', 'ASC')
       .addOrderBy('stock.date', 'DESC')

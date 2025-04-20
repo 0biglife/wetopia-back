@@ -12,6 +12,7 @@ export declare class StocksService {
             close: number;
             high: number;
             low: number;
+            volume: number;
         }[];
     }[]>;
     fetchAndSave(symbol: string, interval?: string, range?: string): Promise<{

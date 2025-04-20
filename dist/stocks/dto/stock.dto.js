@@ -34,4 +34,8 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
 ], StockResponseDto.prototype, "low", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Number)
+], StockResponseDto.prototype, "volume", void 0);
 //# sourceMappingURL=stock.dto.js.map

@@ -4,4 +4,5 @@ export declare class StockResponseDto {
     close: number;
     high: number;
     low: number;
+    volume: number;
 }

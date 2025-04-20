@@ -15,4 +15,7 @@ export class StockResponseDto {
 
   @Expose()
   low!: number;
+
+  @Expose()
+  volume!: number;
 }

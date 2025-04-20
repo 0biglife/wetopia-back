@@ -11,6 +11,7 @@ export declare class StocksRepository extends Repository<Stock> {
         close: number;
         high: number;
         low: number;
+        volume: number;
     }[]>;
     findTotalHistoryBySymbol(symbol: string): Promise<Stock[]>;
     upsertStock(entities: Stock[]): Promise<import("typeorm").InsertResult>;

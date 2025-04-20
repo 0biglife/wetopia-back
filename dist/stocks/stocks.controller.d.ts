@@ -12,6 +12,7 @@ export declare class StocksController {
             close: number;
             high: number;
             low: number;
+            volume: number;
         }[];
     }[]>;
 }

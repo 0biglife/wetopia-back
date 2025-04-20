@@ -32,6 +32,7 @@ let StocksRepository = class StocksRepository extends typeorm_1.Repository {
             'stock.close as close',
             'stock.high as high',
             'stock.low as low',
+            'stock.volume as volume',
         ])
             .orderBy('stock.symbol', 'ASC')
             .addOrderBy('stock.date', 'DESC')

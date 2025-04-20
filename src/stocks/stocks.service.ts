@@ -22,6 +22,7 @@ export class StocksService {
         close: number;
         high: number;
         low: number;
+        volume: number;
       }[];
     }[]
   > {
